@@ -1,6 +1,6 @@
 import 'server-only';
 import { randomUUID } from 'node:crypto';
-import { mkdir, writeFile, unlink } from 'node:fs/promises';
+import { unlink } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import { v2 as cloudinary } from 'cloudinary';
@@ -33,12 +33,11 @@ export async function normalizeImage(bytes: Buffer, mime: string): Promise<Buffe
 export async function uploadImage(bytes: Buffer, mime: string, alt: string): Promise<ImageAsset> {
   const normalized = await normalizeImage(bytes, mime);
   const fileId = randomUUID();
+  const id = `mandakini/${fileId}`;
+  const service = cloud();
   let uploaded: { secure_url: string; public_id: string } | null = null;
-  let kind: 'cloudinary' | 'local' = 'cloudinary';
 
   try {
-    const id = `mandakini/${fileId}`;
-    const service = cloud();
     uploaded = await new Promise((resolve, reject) => {
       const stream = service.uploader.upload_stream({ public_id: id, resource_type: 'image', type: 'upload', overwrite: false, format: 'webp', timeout: 30000 }, (error, result) => {
         if (error || !result) reject(error ?? new Error('No upload result')); else resolve(result);
@@ -47,21 +46,8 @@ export async function uploadImage(bytes: Buffer, mime: string, alt: string): Pro
       stream.end(normalized);
     });
   } catch (cloudErr) {
-    console.warn('Cloudinary upload unavailable, saving locally to data folder:', cloudErr instanceof Error ? cloudErr.message : cloudErr);
-    try {
-      const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
-      await mkdir(uploadsDir, { recursive: true });
-      const filename = `${fileId}.webp`;
-      await writeFile(path.join(uploadsDir, filename), normalized);
-      uploaded = {
-        secure_url: `/uploads/${filename}`,
-        public_id: `uploads/${fileId}`
-      };
-      kind = 'local';
-    } catch (localErr) {
-      console.error('Local fallback upload failed:', localErr);
-      return fail(502, 'UPLOAD_FAILED', 'Image upload failed. Please try again.');
-    }
+    console.warn('Cloudinary upload failed:', cloudErr instanceof Error ? cloudErr.message : cloudErr);
+    return fail(502, 'UPLOAD_FAILED', 'Image upload failed. Please try again.');
   }
 
   if (!uploaded) return fail(502, 'UPLOAD_FAILED', 'Image upload failed. Please try again.');
@@ -69,16 +55,14 @@ export async function uploadImage(bytes: Buffer, mime: string, alt: string): Pro
   try {
     const asset = imageSchema.parse({ cloudinaryUrl: uploaded.secure_url, cloudinaryPublicId: uploaded.public_id, alt });
     await catalogTransaction(async (t, session) => {
-      await t.media.insertOne({ _id: randomUUID(), ...asset, kind, state: 'active', createdAt: new Date() }, { session });
+      await t.media.insertOne({ _id: randomUUID(), ...asset, kind: 'cloudinary', state: 'active', createdAt: new Date() }, { session });
       return true;
     });
     return asset;
   } catch (error) {
-    if (kind === 'cloudinary' && uploaded) {
+    if (uploaded) {
       try { await cloud().uploader.destroy(uploaded.public_id, { resource_type: 'image', invalidate: true }); }
       catch { console.error('Upload registration failed; Cloudinary orphan cleanup requires operator review.'); }
-    } else if (kind === 'local') {
-      try { await unlink(path.join(process.cwd(), 'public', 'uploads', `${fileId}.webp`)); } catch {}
     }
     throw error;
   }
