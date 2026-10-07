@@ -1,0 +1,32 @@
+STRICT TYPESCRIPT: exit=0
+
+
+SYNTAX / LOCAL IMPORTS: exit=0
+Files: 68 Syntax errors: 0 Unresolved local imports: 0
+
+
+VALIDATION TESTS: exit=0
+✔ normalizes SKU and materializes defaults (6.510585ms)
+✔ rejects unknown fields and server-managed metadata (1.731241ms)
+✔ money must be finite, nonnegative and at most two decimals (1.817762ms)
+✔ stock is a nonnegative integer (0.69086ms)
+✔ active products need an image and a valid thumbnail (0.63781ms)
+✔ discount must be below price (0.541151ms)
+✔ variant sum, SKU, IDs and combinations are checked (3.269022ms)
+✔ variation SKUs are optional but nonempty SKUs remain unique (0.632121ms)
+✔ updates require version (2.362662ms)
+✔ query bounds, enums and unknown fields are strict (2.628552ms)
+✔ dangerous URLs and forged image hosts are rejected (0.56802ms)
+✔ content reference lists cannot contain duplicates (0.931761ms)
+✔ category and attributes reject unsafe input (1.667511ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 256.663757
+
+
+npm run lint / npm run build: NOT EXECUTED; npm is absent and staged QA modules are not a complete installation.

@@ -1,0 +1,128 @@
+{
+  "businessName": "MANDAKINI",
+  "tagline": "THREADS OF HERITAGE",
+  "categories": [
+    {
+      "id": "7a3e4ec3-cfc6-42fe-b208-f3121c99faba",
+      "name": "Sarees",
+      "slug": "sarees",
+      "description": "Handcrafted and designer sarees woven with timeless heritage and contemporary grace.",
+      "imagePath": "/mandakini/categories/sarees/sarees-collection.webp"
+    },
+    {
+      "id": "dc91b030-0193-4e1c-875e-bd120a85d25e",
+      "name": "Suits & Kurtis",
+      "slug": "suits-kurtis",
+      "description": "Graceful Anarkalis, straight suits, and coordinated kurta sets for everyday luxury and celebrations.",
+      "imagePath": "/mandakini/categories/suits-kurtis/suits-kurtis-collection.webp"
+    },
+    {
+      "id": "4410171d-a0d7-487f-b02c-597182718487",
+      "name": "Lehengas",
+      "slug": "lehengas",
+      "description": "Artisanal lehengas tailored with intricate embroidery, flared silhouettes, and rich fabrics.",
+      "imagePath": "/mandakini/categories/lehengas/lehengas-collection.webp"
+    },
+    {
+      "id": "fa0eec80-2b3c-447c-b3aa-c96851f9e660",
+      "name": "Dupattas & Scarves",
+      "slug": "dupattas-scarves",
+      "description": "Handwoven Banarasi, Jamdani, and embroidered dupattas to elevate every ensemble.",
+      "imagePath": "/mandakini/categories/dupattas-scarves/dupattas-collection.webp"
+    },
+    {
+      "id": "b047a65b-bea2-4697-a12e-dd01f7f34af1",
+      "name": "Fabrics & Materials",
+      "slug": "fabrics",
+      "description": "Pure handloom silks, brocades, and natural heritage textiles sold by the meter.",
+      "imagePath": "/mandakini/categories/fabrics/fabrics-collection.webp"
+    },
+    {
+      "id": "77f3ab5d-82e5-4129-97cf-0d1947b6dbf3",
+      "name": "Artisanal Accessories",
+      "slug": "accessories",
+      "description": "Handmade zardozi potlis, clutches, and handcrafted accessories complement your look.",
+      "imagePath": "/mandakini/categories/accessories/accessories-collection.webp"
+    }
+  ],
+  "products": [
+    {
+      "id": "c1d1f150-8f86-42c7-bafe-fc2cb81b8f04",
+      "name": "Banarasi Katan Silk Zari Saree",
+      "slug": "banarasi-katan-silk-zari-saree",
+      "sku": "MND-SAR-001",
+      "price": 14500,
+      "category": "Sarees",
+      "fabric": "Pure Katan Silk with Gold Zari",
+      "stock": 6,
+      "images": [
+        "/mandakini/products/sarees/banarasi-katan-silk-saree.webp"
+      ]
+    },
+    {
+      "id": "eb013e24-750c-4336-a563-3fbc8925db25",
+      "name": "Chanderi Hand-Embroidered Anarkali Set",
+      "slug": "chanderi-hand-embroidered-anarkali-set",
+      "sku": "MND-SUT-001",
+      "price": 8900,
+      "category": "Suits & Kurtis",
+      "fabric": "Pure Chanderi Silk & Cotton",
+      "stock": 12,
+      "images": [
+        "/mandakini/products/suits-kurtis/chanderi-embroidered-anarkali.webp"
+      ]
+    },
+    {
+      "id": "b4409cb4-66af-46a1-a2c3-3af99deda586",
+      "name": "Handcrafted Heritage Bridal Lehenga",
+      "slug": "handcrafted-heritage-bridal-lehenga",
+      "sku": "MND-LHG-001",
+      "price": 38500,
+      "category": "Lehengas",
+      "fabric": "Raw Silk & Micro Velvet with Dabka Work",
+      "stock": 4,
+      "images": [
+        "/mandakini/products/lehengas/heritage-bridal-lehenga.webp"
+      ]
+    },
+    {
+      "id": "3311abec-c016-4594-bf45-058aae04958c",
+      "name": "Handwoven Jamdani Silk Dupatta",
+      "slug": "handwoven-jamdani-silk-dupatta",
+      "sku": "MND-DUP-001",
+      "price": 3200,
+      "category": "Dupattas & Scarves",
+      "fabric": "Fine Mulberry Silk",
+      "stock": 8,
+      "images": [
+        "/mandakini/products/dupattas-scarves/jamdani-silk-dupatta.webp"
+      ]
+    },
+    {
+      "id": "cb89ab4a-32a4-44f1-94c0-2c5c8b079652",
+      "name": "Pure Chanderi Brocade Silk Fabric (Per Meter)",
+      "slug": "pure-chanderi-brocade-silk-fabric",
+      "sku": "MND-FAB-001",
+      "price": 1250,
+      "category": "Fabrics & Materials",
+      "fabric": "Pure Chanderi Silk with Zari",
+      "stock": 40,
+      "images": [
+        "/mandakini/products/fabrics/chanderi-brocade-fabric.webp"
+      ]
+    },
+    {
+      "id": "f6820f4d-cef3-478d-b0e0-fb3628e29240",
+      "name": "Zardozi Hand-Embroidered Potli Bag",
+      "slug": "zardozi-hand-embroidered-potli-bag",
+      "sku": "MND-ACC-001",
+      "price": 1850,
+      "category": "Artisanal Accessories",
+      "fabric": "Velvet & Satin Lining",
+      "stock": 15,
+      "images": [
+        "/mandakini/products/accessories/zardozi-embroidered-potli.webp"
+      ]
+    }
+  ]
+}

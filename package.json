@@ -1,0 +1,43 @@
+{
+  "name": "riwayat",
+  "version": "0.1.0",
+  "private": true,
+  "engines": { "node": ">=22.18.0" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test:e2e": "playwright test",
+    "test": "node --conditions=react-server --import tsx --test tests/*.test.ts",
+    "setup:db": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/setup.ts",
+    "bootstrap:admin": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/admin.ts",
+    "seed:demo": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/demo.ts",
+    "seed:mandakini": "node --conditions=react-server --env-file-if-exists=.env --import tsx scripts/seed-mandakini.ts"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "mongodb": "^6.20.0",
+    "zod": "^4.0.0",
+    "cloudinary": "^2.7.0",
+    "sharp": "^0.34.3",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "tsx": "^4.20.5",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.6",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.4.0",
+    "@playwright/test": "^1.55.0"
+  }
+}
+

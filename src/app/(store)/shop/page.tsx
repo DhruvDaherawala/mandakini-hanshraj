@@ -1,0 +1,7 @@
+import Link from 'next/link';
+import {Suspense} from 'react';
+import {getProducts,getCategories,getSettings} from '@/lib/store';
+import ProductCard from '@/components/products/ProductCard';
+import ShopFilters from '@/components/products/ShopFilters';
+export const metadata={title:'The Collection',alternates:{canonical:'/shop'}};
+export default async function Shop({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}) {const raw=await searchParams;const q=Object.fromEntries(Object.entries(raw).filter((e):e is [string,string]=>typeof e[1]==='string'));const [result,cats,s]=await Promise.all([getProducts({...q,limit:'20'}),getCategories(),getSettings()]);const pageLink=(page:number)=>'/shop?'+new URLSearchParams({...q,page:String(page)});return <div className="container page"><h1>The Heritage Collection</h1><p>Pieces to treasure. Stories to wear.</p><Suspense fallback={<p>Loading filters…</p>}><ShopFilters categories={cats}/></Suspense><p className="help">{result.total} pieces</p>{result.items.length?<div className="product-grid">{result.items.map(p=><ProductCard key={p._id} product={p} currency={s.currency}/>)}</div>:<div className="empty"><h2>No pieces found.</h2><Link href="/shop">Clear filters</Link></div>}<nav className="pagination" aria-label="Pagination">{result.page>1&&<Link className="btn outline" href={pageLink(result.page-1)}>Previous</Link>}<span>{result.page} / {Math.max(1,result.pages)}</span>{result.page<result.pages&&<Link className="btn outline" href={pageLink(result.page+1)}>Next</Link>}</nav></div>;}
